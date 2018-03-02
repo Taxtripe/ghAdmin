@@ -1,0 +1,38 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    공지사항 목록
+                </div>
+                <div class="card-body">
+                    <br>
+                    <div class="table-responsive"></div>
+                    <table id="notice" class="table table table-hover table-outline mb-0">
+                        <thead class="thead-default">
+                            <tr>
+                                <th class="text-center"><i class="icon-list"></i> #</th>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>등록일</th>
+                                <th>작성자</th>
+                                <th>추가기능</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let list of pageProducts; let i = index" (click)="goDetail(list)">
+                                <th class="text-center">{{i+1}}</th>
+                                <td>{{list.id}}</td>
+                                <td class="col-xs-8">{{list.subject}} </td>
+                                <td class="">{{list.date | date:"yyyy/MM/dd ' - ' h:mma"}}</td>
+                                <td>관리자</td>
+                                <td><button type="reset" class="btn btn-sm btn-danger" (click)="delNotice(list.id)"><i class="fa fa-ban"></i> 삭제</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ngb-pagination [collectionSize]="listSize" [(page)]="currentPage" [directionLinks]="true"></ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

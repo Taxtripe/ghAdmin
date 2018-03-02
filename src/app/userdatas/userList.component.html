@@ -1,0 +1,80 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    회원 목록
+                </div>
+                <div class="card-body">
+                    <br>
+                    <div class="table-responsive"></div>
+                    <table id="userList" class="table table table-hover table-outline mb-0">
+                        <thead class="thead-default">
+                            <tr>
+                                <th class="text-center"><i class="icon-list"></i> #</th>
+                                <th class="text-center"><i class="icon-people"></i></th>
+                                <th>아이디</th>
+                                <th>닉네임</th>
+                                <th>생년월일</th>
+                                <th>연결유무</th>
+                                <th>지역</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let list of lists; let i = index" (click)="goDetail(list)">
+                            <td>{{i+1}}</td>
+                            <td>
+                              <p *ngIf="list.role == 'mom'" style="margin-bottom:0">엄마</p>
+                              <p *ngIf="list.role == 'dad'" style="margin-bottom:0">아빠</p>
+                              <p *ngIf="list.role == 'etc'" style="margin-bottom:0">가족/친구</p>
+                            </td>
+                            <td>{{list.email}}</td>
+                            <td>{{list.nickName}}</td>
+                            <td>{{list.birth_date}}</td>
+                            <td>
+                              <p *ngIf="list.connection == ''" style="margin-bottom:0"><span *ngIf="list.momId == ''" style="margin-bottom:0">연결안됨</span></p>
+                              <p *ngIf="list.connection != ''" style="margin-bottom:0">연결</p>
+                            </td>
+                            <td>{{list.addr1}} \ {{list.addr2}}</td>
+                          </tr>
+                          <!-- <tr (click)="goDetail(list)">
+                              <th class="text-center"> 1 </th>
+                              <td class="text-center">
+                                  <div class="avatar">
+                                      <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="">
+                                      <span class="avatar-status" [ngClass]="(list.grade=='none')?'badge-danger':'badge-success'"></span>
+                                  </div>
+                              </td>
+                              <td> 아이디 </td>
+                              <td class=""> 닉네임 </td>
+                              <td class=""><span style="font-weight:bold"> 날짜 </span></td>
+                              <td>
+                                  <p style="margin-bottom:0">엄마</p>
+                              </td>
+                              <td> 지역 </td>
+                          </tr> -->
+                            <!-- <tr *ngFor="let list of pageProducts; let i = index" (click)="goDetail(list)">
+                                <th class="text-center">{{i+1}}</th>
+                                <td class="text-center">
+                                    <div class="avatar">
+                                        <img src="assets/img/avatars/1.jpg" class="img-avatar" alt="" src="" [src]="list.profileImages[0] != null ? list.profileImages[0].url : tempUrl">
+                                        <span class="avatar-status" [ngClass]="(list.grade=='none')?'badge-danger':'badge-success'"></span>
+                                    </div>
+                                </td>
+                                <td>{{list.email}}</td>
+                                <td class="">{{list.nickName}} </td>
+                                <td class=""><span style="font-weight:bold">({{list.age}})</span> {{list.birthDate}}</td>
+                                <td>
+                                    <p *ngIf="list.gender == 'female'" style="margin-bottom:0">여자</p>
+                                    <p *ngIf="list.gender == 'male'" style="margin-bottom:0">남자</p>
+                                </td>
+                                <td>{{list.locale}}</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                    <!-- <ngb-pagination [collectionSize]="listSize" [(page)]="currentPage" [directionLinks]="true"></ngb-pagination> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

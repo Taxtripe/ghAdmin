@@ -1,0 +1,99 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    자유게시판 상세보기
+                </div>
+                <div class="card-body">
+                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label">사용자</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">{{nickName}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">제목</label>
+                            <div class="col-md-9">
+                                <p class="form-control-static">{{subject}}</p>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="textarea-input">게시판 내용</label>
+                            <div class="col-md-9">
+                                <!-- <textarea id="textarea-input" name="textarea-input" rows="9" class="form-control" placeholder="공지사항 내용 작성" [(ngModel)]="noticeData.contents" ></textarea> -->
+                                <p class="form-control-static">{{contents}}</p>
+                                <div *ngFor="let notice of noticeImages;">
+                                  <img src="" alt="" [src]="notice.url" width="50%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 form-control-label" for="text-input">댓글</label>
+                            <div class="col-md-9">
+                              <div *ngFor="let comment of noticeComments;" class="row">
+                                  <div class="col-md-9">
+                                    <div class="card">
+                                      <div class="card-header">
+                                        {{comment.userId}}
+
+                                        <span class="badge badge-pill badge-danger float-right">{{comment.date | date:"yyyy/MM/dd ' - ' h:mma"}}</span>
+                                        <span class="badge badge-success float-right">댓글</span>
+                                      </div>
+                                      <div class="card-body">
+
+                                        <div class="row">
+                                          <div class="col-md-8">
+                                            {{comment.contents}}
+                                          </div>
+                                          <div class="col-md-2">
+
+                                          </div>
+                                          <div class="col-md-2">
+                                            <button type="button" class="btn btn-danger" (click)="delComment(comment)"><i class="icon-trash"></i>&nbsp; 삭제</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    <div class="row" *ngFor="let recomment of comment.reComments">
+                                      <div class="col-md-2">
+
+                                      </div>
+                                      <div class="col-md-10">
+                                        <div class="card">
+                                          <div class="card-header">
+                                            {{recomment.userId}}
+
+                                            <span class="badge badge-pill badge-danger float-right">{{recomment.date | date:"yyyy/MM/dd ' - ' h:mma"}}</span>
+                                            <span class="badge badge-success float-right">대댓글</span>
+                                          </div>
+                                          <div class="card-body">
+                                            <div class="row">
+                                              <div class="col-md-8">
+                                                {{recomment.contents}}
+                                              </div>
+                                              <div class="col-md-2">
+
+                                              </div>
+                                              <div class="col-md-2">
+                                                <button type="button" class="btn btn-danger" (click)="delReComment(recomment)"><i class="icon-trash"></i>&nbsp; 삭제</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button type="reset" class="btn btn-sm btn-danger" (click)="delNotice()"><i class="fa fa-ban"></i> 삭제</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

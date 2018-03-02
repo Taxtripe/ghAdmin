@@ -1,0 +1,52 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    신규회원 가입 승인
+                </div>
+                <div class="card-body">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                    <button type="button" class="btn btn-primary"><i class="fa fa-search"></i> 검색</button>
+                  </span>
+                        <input type="email" id="" name="input1-group2" class="form-control" placeholder="사용자 아이디 조회" [(ngModel)]="searchString">
+                    </div>
+                    <br>
+                    <div class="table-responsive"></div>
+                    <table class="table table-responsive table-hover table-outline mb-0">
+                        <thead class="thead-default">
+                            <tr>
+                                <th class="text-center"><i class="icon-people"></i> #</th>
+                                <th>아이디</th>
+                                <th>닉네임</th>
+                                <th>생년월일</th>
+                                <th>성별</th>
+                                <th>지역</th>
+                                <th>부가기능</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr *ngFor="let list of pageProducts | filter : 'email' : searchString ; let i = index">
+                                <th class="text-center">{{i+1}}</th>
+                                <td>{{list.email}}</td>
+                                <td>{{list.nickName}}</td>
+                                <td>{{list.birthDate}}</td>
+                                <td>
+                                    <p *ngIf="list.gender == 'female'" style="margin-bottom:0">여자 </p>
+                                    <p *ngIf="list.gender == 'male'" style="margin-bottom:0">남자 </p>
+                                </td>
+                                <td>{{list.locale}}</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" (click)="goToAuth(list)">가입 심사</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <ngb-pagination [collectionSize]="listSize" [(page)]="currentPage" [directionLinks]="true"></ngb-pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
